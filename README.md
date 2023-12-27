@@ -1,1 +1,1 @@
-#some_every methods exercise
+# arr.some(),arr.every() methods exercise
