@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Some_Every Methods Exercise</title>
+    <!--JS for Jasmine standalone library 5.1.1:don't forget to include lib/ folder-->
+      <link rel="shortcut icon" type="image/png" href="lib/jasmine-5.1.1/jasmine_favicon.png">
+      <link rel="stylesheet" href="lib/jasmine-5.1.1/jasmine.css">
+      <script src="lib/jasmine-5.1.1/jasmine.js"></script>
+      <script src="lib/jasmine-5.1.1/jasmine-html.js"></script>
+      <script src="lib/jasmine-5.1.1/boot0.js"></script>
+      <script src="lib/jasmine-5.1.1/boot1.js"></script><!--optional:configure Jasmine env-->
+    <!-- JS for Jasmine standalone library-->
+    <script>
+function hasOddNumber(A){
+  return A.some(a=>a % 2 !== 0)
+}
+function hasAZero(n){
+  return n.toString().split('').some(a=>a === '0')
+}
+function hasOnlyOddNumbers(A){
+  return A.every(a=>a % 2 !== 0)
+}
+function hasNoDuplicates(A){
+  return A.every(a=>A.indexOf(a) === A.lastIndexOf(a))
+}
+function hasCertainKey(A, k){
+  return A.every(obj=>k in obj)
+}
+function hasCertainValue(A, k, searchValue){
+  return A.every(obj=>obj[k] === searchValue)
+}      
+
+describe("#hasOddNumber",()=>{
+  it("returns true if at least 1 odd number in array",()=>expect(hasOddNumber([1,2,4])).toEqual(true))
+  it("returns false if no odd numbers in array",()=>expect(hasOddNumber([2,4])).toEqual(false))
+})
+describe("#hasAZero",()=>{
+  it("returns true if number contains at least one 0",()=>expect(hasAZero(102)).toEqual(true))
+  it("returns false if number not have any zeros",()=>expect(hasAZero(1234)).toEqual(false))
+})
+describe("#hasOnlyOddNumbers",()=>{
+  it("returns true if every number is odd",()=>expect(hasOnlyOddNumbers([1,3,5])).toEqual(true))
+  it("returns false if there is/are even numbers",()=>expect(hasOnlyOddNumbers([1, 2, 3, 5, 7])).toEqual(false))
+})
+describe("#hasNoDuplicates",()=>{
+  it("returns true if no duplicates",()=>expect(hasNoDuplicates([1, 2, 3, 1])).toEqual(false))
+  it("returns false if there are duplicates",()=>expect(hasNoDuplicates([1, 2, 3])).toEqual(true))
+})
+describe("#hasCertainKey",()=>{
+  var A=[{ name:"Li",age:20,sex:'male'},{name:"Lan",age:10}]
+  it("returns true if every object has specified key",()=>expect(hasCertainKey(A,"name")).toEqual(true))
+  it("returns false if every object not has specified key",()=>expect(hasCertainKey(A, "sex")).toEqual(false))
+})
+describe("#hasCertainValue",()=>{
+  var A=[{ name:"Li",age:20,sex:'male'},{name:"Lu",age:10,sex:'male'}]
+  it("returns true if every object has specified value for specified key",()=>expect(hasCertainValue(A, "sex", "male")).toEqual(true))
+  it("returns false if every object not has specified value for specified key",()=>expect(hasCertainValue(A, "age",20)).toEqual(false))
+})
+    </script>
+  </head>
+  <body>
+    <h3>9.2.4.Some_Every Methods Exercise</h3>
+  </body>
+</html>
